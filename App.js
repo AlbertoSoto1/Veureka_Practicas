@@ -3,10 +3,9 @@ import { createStackNavigator,  createAppContainer } from 'react-navigation';
 import { YellowBox } from 'react-native';
 import _ from 'lodash';
 
-import LogIn from './components/LogIn';
-import SignUp from './components/SignUp';
-import Profile from './components/Profile';
-import EditProfile from './components/EditProfile';
+import Login from './components/Login';
+import Error from './components/Error';
+import Principal from './components/Principal';
 
 YellowBox.ignoreWarnings(['Setting a timer']);
 const _console = _.clone(console);
@@ -17,15 +16,14 @@ console.warn = message => {
 };
 
 const AppNavigator = createStackNavigator(
-    {
-        LogInScreen: LogIn, 
-        SignUpScreen: SignUp, 
-        ProfileScreen: Profile, 
-        EditProfileScreen: EditProfile
-    },
-    {
-        initialRouteName: 'LogInScreen'
-    }
+  {
+    LoginScreen: Login, 
+    ErrorScreen: Error, 
+    PrincipalScreen: {screen: Principal, navigationOptions: {header: null}}
+  },
+  {
+    initialRouteName: 'LoginScreen'
+  }
 );
 
 const AppContainer = createAppContainer(AppNavigator);
